@@ -91,23 +91,23 @@ def review(request,post):
     }
     return render(request, 'review.html', params)
 
-# class ProfileList(APIView):
-#     def get(self, request, format=None):
-#         all_profile = Profile.objects.all()
-#         serializers = ProfileSerializer(all_profile, many=True)
-#         return Response(serializers.data)
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profile = Profile.objects.all()
+        serializers = ProfileSerializer(all_profile, many=True)
+        return Response(serializers.data)
 
-# class UserList(APIView):
-#     def get(self, request, format=None):
-#         all_user = User.objects.all()
-#         serializers = UserSerializer(all_user, many=True)
-#         return Response(serializers.data)
+class UserList(APIView):
+    def get(self, request, format=None):
+        all_user = User.objects.all()
+        serializers = UserSerializer(all_user, many=True)
+        return Response(serializers.data)
 
-# class PostList(APIView):
-#     def get(self, request, format=None):
-#         all_post = Post.objects.all()
-#         serializers = PostSerializer(all_post, many=True)
-#         return Response(serializers.data)
+class PostList(APIView):
+    def get(self, request, format=None):
+        all_post = Post.objects.all()
+        serializers = PostSerializer(all_post, many=True)
+        return Response(serializers.data)
 
 # #  if request.method == 'POST':
 # #         form = UploadForm(request.POST)
