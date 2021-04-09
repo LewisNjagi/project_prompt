@@ -111,14 +111,14 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'awward',
-        'USER': 'qyunky',
-        'PASSWORD': 'Lewis860',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'awward',
+#         'USER': 'qyunky',
+#         'PASSWORD': 'Lewis860',
+#     }
+# }
 
 
 # Password validation
