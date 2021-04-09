@@ -1,0 +1,97 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block styles %}
+
+{% bootstrap_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+
+<div style=" position: relative;text-align: center;color: white;">
+    {% if profile %}
+    <img src="{{ post.image.url }}" class="card-img" width="100%" height="500px">
+    <hr style="width:96%">
+
+    <img src="{{post.user.photo.url}}" class="rounded-circle border ml-3 mt-2  mr-3" alt="{{post.user.user.username}}"
+        width="35" height="35">
+
+    {% else %}
+    <img src="../static/img/usgs-k7WetNdaY6A-unsplash.jpg" class="card-img" width="100%" height="500px">
+    <div class="bottom-left" style="position: absolute;
+    bottom: 60px;
+    left: 80px;"><button type="button" class="btn btn4">View Site</button></div>
+    <div class="top-right" style=" position: absolute;
+    top: 50px;
+    right: 80px;"><span class="material-icons share">
+            share
+        </span>
+    </div>
+    <div class="centered" style="position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);">
+        <h1 style="font-family: 'Oranienbaum', serif;">Blog Website</h1>
+        <p style="font-family: 'Spartan', sans-serif;">BY {{ user.username | upper }} from KENYA</p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="container" style="font-family: 'Noto Sans JP', sans-serif;">
+
+    <div class="row">
+        <div class="col-6">
+            <h2 style="font-family: 'Noto Sans JP', sans-serif; margin-top: 30px; margin-bottom: 30px;">Reviews</h2>
+        </div>
+        <div class="col-6">
+            <h2 style="font-family: 'Noto Sans JP', sans-serif; margin-top: 30px; margin-bottom: 30px;">Post a Review</h2>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-6">
+            {% for review in reviews %}
+            <h5>Total Rating: {{ review.total }}</h5>
+            <div class="card" style="width: 23rem;">
+                <div class="ml-2" style="margin-top: 15px;"><span ><strong>{{ review.review }}</strong></span>
+                    <br>
+                    <span style="margin-top: 15px;">Design: <strong>{{ review.design }}</strong></span><br>
+                    <span>Usability: <strong>{{ review.usability }}</strong></span><br>
+                    <span>Content: <strong>{{ review.content }}</strong></span>
+
+                </div>
+            </div>
+            {% empty %}
+            <p class="ml-3">No reviews here yet</p>
+            {% endfor %}
+        </div>
+        <div class="col-6">
+            <form class="form" action="" method="post" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% bootstrap_form rate_form layout='inline' %}
+                    </div>
+
+                    <button type="submit" class="btn btn3">Post</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}
