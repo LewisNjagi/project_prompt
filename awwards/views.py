@@ -50,46 +50,46 @@ def profile(request, username):
     }
     return render(request,'profile.html',params)
 
-# def review(request,post):
-#     post = Post.objects.get(title=post)
-#     reviews = post.review.all()
-#     global review
-#     global reviewtotal
-#     if request.method == 'POST':
-#         rate_form = RateForm(request.POST)
-#         if rate_form.is_valid():
-#             review = rate_form.save(commit=False)
-#             review.post = post
-#             review.user = request.user.profile
-#             review.save()
-#             rating = Review.objects.filter(post=post)
+def review(request,post):
+    post = Post.objects.get(title=post)
+    reviews = post.review.all()
+    global review
+    global reviewtotal
+    if request.method == 'POST':
+        rate_form = RateForm(request.POST)
+        if rate_form.is_valid():
+            review = rate_form.save(commit=False)
+            review.post = post
+            review.user = request.user.profile
+            review.save()
+            rating = Review.objects.filter(post=post)
 
-#             design_one = [design.design for design in rating]
-#             design = sum(design_one) / len(design_one)
-#             usability_one = [usability.usability for usability in rating]
-#             usability = sum(usability_one) / len(usability_one)
-#             content_one = [content.content for content in rating]
-#             content = sum(content_one) / len(content_one)
+            design_one = [design.design for design in rating]
+            design = sum(design_one) / len(design_one)
+            usability_one = [usability.usability for usability in rating]
+            usability = sum(usability_one) / len(usability_one)
+            content_one = [content.content for content in rating]
+            content = sum(content_one) / len(content_one)
 
-#             total = (design + usability + content) / 3
-#             review.total = round(total, 2)
-#             review.save()
-#             # create a total class only
+            total = (design + usability + content) / 3
+            review.total = round(total, 2)
+            review.save()
+            # create a total class only
 
-#             # reviewtotal = Review.objects(pk = review.id).first()
+            # reviewtotal = Review.objects(pk = review.id).first()
 
-#     else:
-#         rate_form = RateForm()
+    else:
+        rate_form = RateForm()
         
-#         # reviewtotal = Review.objects(pk = review.id).first()
+        # reviewtotal = Review.objects(pk = review.id).first()
 
-#     params = {
-#         'posts': post,
-#         'rate_form': rate_form,
-#         'reviews':reviews,
-#         # 'reviewtotal':reviewtotal,
-#     }
-#     return render(request, 'review.html', params)
+    params = {
+        'posts': post,
+        'rate_form': rate_form,
+        'reviews':reviews,
+        # 'reviewtotal':reviewtotal,
+    }
+    return render(request, 'review.html', params)
 
 # class ProfileList(APIView):
 #     def get(self, request, format=None):
