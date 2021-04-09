@@ -22,33 +22,33 @@ def index(request):
         form = PostForm()
     return render(request,'index.html',{"form":form,"posts":posts})
 
-# def profile(request, username):
-#     post = request.user.profile.post.all()
-#     if request.method == 'POST':
-#         user_form = UpdateUserForm(request.POST, instance=request.user)
-#         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-#         if user_form.is_valid() and prof_form.is_valid():
-#             user_form.save()
-#             prof_form.save()
-#             return HttpResponseRedirect(request.path_info)
-#     else:
-#         user_form = UpdateUserForm(instance=request.user)
-#         prof_form = UpdateUserProfileForm(instance=request.user.profile)
-#     if request.method == 'POST':
-#         form = PostForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.user = request.user.profile
-#             post.save()
-#     else:
-#         form = PostForm()
-#     params = {
-#         'user_form': user_form,
-#         'prof_form': prof_form,
-#         'posts': post,
-#         'form':form,
-#     }
-#     return render(request,'profile.html',params)
+def profile(request, username):
+    post = request.user.profile.post.all()
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and prof_form.is_valid():
+            user_form.save()
+            prof_form.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        prof_form = UpdateUserProfileForm(instance=request.user.profile)
+    if request.method == 'POST':
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+    else:
+        form = PostForm()
+    params = {
+        'user_form': user_form,
+        'prof_form': prof_form,
+        'posts': post,
+        'form':form,
+    }
+    return render(request,'profile.html',params)
 
 # def review(request,post):
 #     post = Post.objects.get(title=post)
