@@ -1,37 +1,37 @@
-# from django.db import models
-# from django.contrib.auth.models import User
-# from django.db.models.signals import post_save
-# from django.dispatch import receiver
-# from django.core.exceptions import ObjectDoesNotExist
-# from cloudinary.models import CloudinaryField
+from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.exceptions import ObjectDoesNotExist
+from cloudinary.models import CloudinaryField
 
 
-# # Create your models here.
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-#     photo = CloudinaryField('gallery/', default='default.jpeg')
-#     bio = models.CharField(max_length=300)
-#     name = models.CharField(blank=True, max_length=120)
+# Create your models here.
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    photo = CloudinaryField('gallery/', default='default.jpeg')
+    bio = models.CharField(max_length=300)
+    name = models.CharField(blank=True, max_length=120)
 
-#     class Meta:
-#         ordering = ["-pk"]
+    class Meta:
+        ordering = ["-pk"]
 
-#     @receiver(post_save, sender=User)
-#     def create_user_profile(sender, instance, created, **kwargs):
-#         try:
-#             instance.profile.save()
-#         except ObjectDoesNotExist:
-#             Profile.objects.create(user=instance)
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        try:
+            instance.profile.save()
+        except ObjectDoesNotExist:
+            Profile.objects.create(user=instance)
 
-#     @receiver(post_save, sender=User)
-#     def save_user_profile(sender, instance, **kwargs):
-#         instance.profile.save()
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
-#     def save_profile(self):
-#         self.user
+    def save_profile(self):
+        self.user
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 # class Rating(models.Model):
 #     rating = ((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),(6, '6'),(7, '7'),(8, '8'),(9, '9'),(10, '10'))
