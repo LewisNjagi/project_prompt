@@ -1,26 +1,26 @@
-# from django.shortcuts import render,get_object_or_404
-# from .forms import PostForm,UpdateUserForm,UpdateUserProfileForm,RateForm
-# from .models import Review,Profile,Post
-# from django.http import HttpResponse,HttpResponseRedirect
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-# from .serializer import ProfileSerializer,UserSerializer,PostSerializer
-# from django.contrib.auth.models import User
+from django.shortcuts import render,get_object_or_404
+from .forms import PostForm,UpdateUserForm,UpdateUserProfileForm,RateForm
+from .models import Review,Profile,Post
+from django.http import HttpResponse,HttpResponseRedirect
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,UserSerializer,PostSerializer
+from django.contrib.auth.models import User
 
 
-# # Create your views here.
-# def index(request):
+# Create your views here.
+def index(request):
     
-#     posts = Post.all_objects()
-#     if request.method == 'POST':
-#         form = PostForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.user = request.user.profile
-#             post.save()
-#     else:
-#         form = PostForm()
-#     return render(request,'index.html',{"form":form,"posts":posts})
+    posts = Post.all_objects()
+    if request.method == 'POST':
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+    else:
+        form = PostForm()
+    return render(request,'index.html',{"form":form,"posts":posts})
 
 # def profile(request, username):
 #     post = request.user.profile.post.all()
