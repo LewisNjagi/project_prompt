@@ -1,0 +1,71 @@
+{%extends "django_registration/base.html"%}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block styles %}
+
+{% bootstrap_css %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap" rel="stylesheet">
+<style>
+  html {
+    overflow-x: hidden;
+  }
+</style>
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <img
+    src="https://images.unsplash.com/photo-1542372147193-a7aca54189cd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+    style="width: 50%; height: 675px;" alt="">
+  <div class="col-6">
+    <div class="container">
+      <h4 class="text-center" style="font-family: 'Rajdhani', sans-serif; margin-top: 20px;">WELCOME TO AWWWARDS</h4>
+
+      <h3 class="text-center" style="font-family: 'Oranienbaum', serif;">Sign Up</h3>
+      {% if form.errors %}
+            <p style="color: red;"> Some Information Might be Incorrect </p>
+            {% endif %}
+      <form action="/accounts/register/" method="post" style="font-family: 'Spartan', sans-serif;">
+        {% csrf_token %}
+
+        {% bootstrap_form form %}
+        <div class="form-group">
+          <input type="submit" class="btn btn3" value="CREATE YOUR ACCOUNT">
+        </div>
+        <input type="hidden" name="next" value="{{next}}">
+      </form>
+      <p style="font-family: 'Spartan', sans-serif;">Are you a member? <a href="/accounts/login">Log In</a></p>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">
+  {% if form.errors %}
+  <p> Some Information Might be Incorrect </p>
+  {% endif %}
+  <div class="container">
+
+    <h3 class="text-center">AWWWARDS</h3>
+
+    <h3 class="text-center">Sign Up</h3>
+
+    <form action="/accounts/register/" method="post">
+      {% csrf_token %}
+
+      {% bootstrap_form form %}
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+      </div>
+      <input type="hidden" name="next" value="{{next}}">
+    </form>
+  </div>
+</div> -->
+
+{% endblock %}
