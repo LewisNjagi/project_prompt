@@ -1,0 +1,51 @@
+{%extends "django_registration/base.html"%}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block styles %}
+
+{% bootstrap_css %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap" rel="stylesheet">
+<style>
+    html {
+        overflow-x: hidden;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <img src="https://images.unsplash.com/photo-1600695268275-1a6468700bd5?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8bG9naW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        style="width: 50%; height: 675px;" alt="">
+    <div class="col-6">
+        <div class="container">
+            
+            <h4 class="text-center" style="font-family: 'Rajdhani', sans-serif; margin-top: 30px;">WELCOME TO AWWWARDS</h4>
+
+            <h3 class="text-center" style="font-family: 'Oranienbaum', serif;">Log In</h3>
+            {% if form.errors %}
+            <p style="color: red;"> Some Information Might be Incorrect </p>
+            {% endif %}
+            <form action="" method="post" style="font-family: 'Spartan', sans-serif;">
+                {% csrf_token %}
+
+                {% bootstrap_form form %}
+                <div class="form-group">
+                    <input type="submit" class="btn btn3" value="LOG IN">
+                </div>
+                <input type="hidden" name="next" value="{{next}}">
+            </form>
+            <p style="font-family: 'Spartan', sans-serif;">Not a member yet? <a href="/accounts/register">Sign up</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
