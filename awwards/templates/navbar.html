@@ -1,0 +1,73 @@
+{% load static %}
+{% load bootstrap4 %}
+
+{% block styles %}
+
+{% bootstrap_css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+    }
+</script>
+{% endblock %}
+<nav class="navbar navbar-expand-md">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <div class="navbar-nav mr-auto">
+            <div id="main">
+                <button class="openbtn" onclick="openNav()"
+                    style="color: inherit; font-family: 'Noto Sans JP', sans-serif; font-size: 20px; margin-top: 22px;">☰</button>
+            </div>
+            <div class="navbar-nav mx-auto" style="padding-top: 5px;">
+                <img src="../static/img/Precious Beast  's Store _ Society6.png" width="70" height="70"
+                    class="d-inline-block align-top" alt="">
+                <a href="/" class="navbar-brand"
+                    style="color: inherit; font-family: 'Yeseva One', cursive; font-size: 30px; margin-top: 10px;">
+                    AWWWARDS</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto back">
+
+            {% if user.is_authenticated %}
+            <div class="dropdown">
+                {% if profile %}
+                <img class="rounded-circle" style=" height: 40px; width: 40px;" src="{{ user.profile.photo.url }}">
+                {% else %}
+                <img class="rounded-circle" style=" height: 40px; width: 40px;" src="../static/img/default.jpeg">
+                {% endif %}
+                <div class="dropdown-content">
+                    <a href="{% url 'profile' user.username %}">Profile</a>
+                    <a>Settings</a>
+                    <a href="{% url 'profile' user.username %}">Collection</a>
+                    <a href="/accounts/logout">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="/accounts/login">
+                <li>REGISTER / LOG IN</li>
+            </a>
+            {% endif %}
+            <a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-md">SUBMIT SITE</a>
+            
+            <div class="animation start-login"></div>
+
+        </ul>
+    </div>
+</nav>
