@@ -8,15 +8,15 @@ from django.contrib.auth.models import User
 #         model = Rating
 #         fields = ('design','usability','content')
 
-# class RateForm(forms.ModelForm):
-#     review = forms.CharField(widget=forms.Textarea)
-#     design = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(attrs={'placeholder': 'design'}),required=True)
-#     usability = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(),required=True)
-#     content = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(),required=True)
+class RateForm(forms.ModelForm):
+    review = forms.CharField(widget=forms.Textarea)
+    design = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(attrs={'placeholder': 'design'}),required=True)
+    usability = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(),required=True)
+    content = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(),required=True)
 
-#     class Meta:
-#         model = Review
-#         fields = ('review','design','usability','content')
+    class Meta:
+        model = Review
+        fields = ('review','design','usability','content')
 
 class PostForm(forms.ModelForm):
     class Meta:
