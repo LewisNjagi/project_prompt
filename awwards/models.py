@@ -69,37 +69,37 @@ class Post(models.Model):
         posts = cls.objects.all()
         return posts
 
-# RATE_CHOICES = [
-#     (1, '1'),
-#     (2, '2'),
-#     (3, '3'),
-#     (4, '4'),
-#     (5, '5'),
-#     (6, '6'),
-#     (7, '7'),
-#     (8, '8'),
-#     (9, '9'),
-#     (10, '10'),
-# ]
+RATE_CHOICES = [
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+    (5, '5'),
+    (6, '6'),
+    (7, '7'),
+    (8, '8'),
+    (9, '9'),
+    (10, '10'),
+]
 
-# class Review(models.Model):
-#     review = models.TextField(max_length=500,blank=True)
-#     user = models.ForeignKey('Profile',on_delete=models.CASCADE,related_name='review')
-#     post = models.ForeignKey('Post',on_delete=models.CASCADE,related_name='review')
-#     design = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
-#     usability = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
-#     content = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
-#     total = models.FloatField(default=0,blank=True)
+class Review(models.Model):
+    review = models.TextField(max_length=500,blank=True)
+    user = models.ForeignKey('Profile',on_delete=models.CASCADE,related_name='review')
+    post = models.ForeignKey('Post',on_delete=models.CASCADE,related_name='review')
+    design = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    usability = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    content = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    total = models.FloatField(default=0,blank=True)
 
 
-#     class Meta:
-#         ordering = ["-pk"]
+    class Meta:
+        ordering = ["-pk"]
 
-#     def __str__(self):
-#         return f'{self.user.name} Post'
+    def __str__(self):
+        return f'{self.user.name} Post'
 
-# class Total(models.Model):
-#     score = models.PositiveSmallIntegerField(default=0)
+class Total(models.Model):
+    score = models.PositiveSmallIntegerField(default=0)
 
-#     def __str__(self):
-#         return self.score
+    def __str__(self):
+        return self.score
