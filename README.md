@@ -35,7 +35,7 @@ As a user of the website you will be able to:
 | View Profile | 
  
 ## Live Link
-https://clonensta.herokuapp.com/
+https://awwardsa.herokuapp.com/
 No known Bugs
 ## Technologies Used 
 * PYTHON
