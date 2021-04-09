@@ -15,6 +15,7 @@ import os
 import cloudinary
 import django_heroku
 from decouple import config,Csv
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
